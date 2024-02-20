@@ -84,6 +84,20 @@ fig2.update_layout(
     paper_bgcolor='rgba(0,0,0,0)',
     font_color='white'
 )
+report1 = {
+    ' ': ['0', '1', '2', 'accuracy', 'macro avg', 'weighted avg'],
+    'precision': [0.51, 0.19, 0.52, '', 0.41, 0.46],
+    'recall': [0.41, 0.05, 0.74, '', 0.40, 0.51],
+    'f1-score': [0.45, 0.07, 0.61, '', 0.38, 0.46],
+    'support': [316, 151, 418, 885, 885, 885]
+}
+df1_report = pd.DataFrame(report1)
+table1 = dash_table.DataTable(
+    id='table',
+    columns=[{"name": i, "id": i} for i in df1_report.columns],
+    data=df1_report.to_dict('records'),
+    style_cell={'backgroundColor': '#1e2130', 'color': 'white'},
+)
 page_1_layout = html.Div([
     html.H3('Predicting students dropout based on background', style={'textAlign': 'center', 'color': 'white'}),
     dash_table.DataTable(
@@ -101,8 +115,9 @@ page_1_layout = html.Div([
         id='bar2',
         figure=fig2
     ),
-    html.H4('Model Used: Logistic Regression', style={'color': 'white'}),
-    html.H4('Accuracy: 47.89%', style={'color': 'white'}),
+    html.P("The classification report for the model is as follows:"),
+    table1,
+    html.br(),
     dcc.Link('Go back to home', href='/', style={'color': 'white'}),
 ], style={'backgroundColor': '#060606'})
 
@@ -120,7 +135,20 @@ fig2.update_layout(
     font_color='white'
 )
 fig2.update_xaxes(range=[0, 100])
-
+report2 = {
+    ' ': ['1', '2', '3', '4', '5', 'accuracy', 'macro avg', 'weighted avg'],
+    'precision': [0.00, 0.00, 0.47, 0.00, 0.00, '', 0.09, 0.22],
+    'recall': [0.00, 0.00, 1.00, 0.00, 0.00, '', 0.20, 0.47],
+    'f1-score': [0.00, 0.00, 0.63, 0.00, 0.00, '', 0.13, 0.30],
+    'support': [13, 64, 100, 36, 2, 215, 215, 215]
+}
+df2_report = pd.DataFrame(report2)
+table2 = dash_table.DataTable(
+    id='table',
+    columns=[{"name": i, "id": i} for i in df2_report.columns],
+    data=df2_report.to_dict('records'),
+    style_cell={'backgroundColor': '#1e2130', 'color': 'white'},
+)
 page_2_layout = html.Div([
     html.H3('Predicting Physical Health after Doctor visits', style={'textAlign': 'center', 'color': 'white'}),
     dash_table.DataTable(
@@ -140,8 +168,9 @@ page_2_layout = html.Div([
         figure=fig2,
         style={'margin': '50px'}
     ),
-    html.H4('Model Used: Linear Regression', style={'color': 'white'}),
-    html.H4('Accuracy: 76.26%', style={'color': 'white'}),
+    html.P("The classification report for the model is as follows:"),
+    table2,
+    html.br(),
     dcc.Link('Go back to home', href='/', style={'color': 'white'}),
 ], style={'backgroundColor': '#060606'})
 
@@ -157,6 +186,20 @@ fig2.update_layout(
     plot_bgcolor='rgba(0,0,0,0)',
     paper_bgcolor='rgba(0,0,0,0)',
     font_color='white'
+)
+report3 = {
+    ' ': ['0.0', '2.0', '3.0', 'accuracy', 'macro avg', 'weighted avg'],
+    'precision': [0.65, 0.00, 0.62, '', 0.43, 0.63],
+    'recall': [0.92, 0.00, 0.23, '', 0.38, 0.65],
+    'f1-score': [0.76, 0.00, 0.33, '', 0.37, 0.59],
+    'support': [75, 3, 44, 122, 122, 122]
+}
+df3_report = pd.DataFrame(report3)
+table3 = dash_table.DataTable(
+    id='table',
+    columns=[{"name": i, "id": i} for i in df3_report.columns],
+    data=df3_report.to_dict('records'),
+    style_cell={'backgroundColor': '#1e2130', 'color': 'white'},
 )
 
 page_3_layout = html.Div([
@@ -176,9 +219,9 @@ page_3_layout = html.Div([
         id='bar2',
         figure=fig2
     ),
-    html.H4('Model Used: Random Forest Classifier', style={'color': 'white'}),
-    html.H4('Accuracy: 67.47%', style={'color': 'white'}),
-    
+    html.P("The classification report for the model is as follows:"),
+    table3,
+    html.br(),
     dcc.Link('Go back to home', href='/', style={'color': 'white'}),
 ], style={'backgroundColor': '#060606'})
 
